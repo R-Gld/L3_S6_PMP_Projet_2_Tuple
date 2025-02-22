@@ -156,7 +156,7 @@ namespace tpl {
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
-    auto plus_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
+    auto& plus_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
       ((this->get<Idx>() += other.template get<Idx>()), ...);
       return *this;
     }
@@ -164,38 +164,38 @@ namespace tpl {
     template<std::size_t... Idx, typename ... OtherTypes>
     auto minus_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) const {
       return Tuple<decltype(this->get<Idx>() - other.template get<Idx>())...>(
-        (this->get<Idx>() + other.template get<Idx>())...
+        (this->get<Idx>() - other.template get<Idx>())...
       );
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
-    auto minus_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
+    auto& minus_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
       ((this->get<Idx>() -= other.template get<Idx>()), ...);
       return *this;
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
     auto times_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) const {
-      return Tuple<decltype(this->get<Idx>() - other.template get<Idx>())...>(
+      return Tuple<decltype(this->get<Idx>() * other.template get<Idx>())...>(
         (this->get<Idx>() * other.template get<Idx>())...
       );
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
-    auto times_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
+    auto& times_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
       ((this->get<Idx>() *= other.template get<Idx>()), ...);
       return *this;
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
     auto divide_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) const {
-      return Tuple<decltype(this->get<Idx>() - other.template get<Idx>())...>(
+      return Tuple<decltype(this->get<Idx>() / other.template get<Idx>())...>(
         (this->get<Idx>() / other.template get<Idx>())...
       );
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
-    auto divide_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
+    auto& divide_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
       ((this->get<Idx>() /= other.template get<Idx>()), ...);
       return *this;
     }
