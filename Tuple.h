@@ -52,8 +52,7 @@ namespace tpl {
     template <typename ... OtherTypes>
     auto& operator+=(const Tuple<OtherTypes...>& other) {
       // static_assert(sizeof...(OtherTypes) == sizeof...(Types), "Tuples must have the same size.");
-      plus_eq_impl(other, std::make_index_sequence<sizeof...(Types)>{});
-      return *this;
+      return plus_eq_impl(other, std::make_index_sequence<sizeof...(Types)>{});
     }
 
 
@@ -66,8 +65,7 @@ namespace tpl {
     template <typename ... OtherTypes>
     auto& operator-=(const Tuple<OtherTypes...>& other) {
       // static_assert(sizeof...(OtherTypes) == sizeof...(Types), "Tuples must have the same size.");
-      minus_eq_impl(other, std::make_index_sequence<sizeof...(Types)>{});
-      return *this;
+      return minus_eq_impl(other, std::make_index_sequence<sizeof...(Types)>{});
     }
 
 
@@ -80,8 +78,7 @@ namespace tpl {
     template <typename ... OtherTypes>
     auto& operator*=(const Tuple<OtherTypes...>& other) {
       // static_assert(sizeof...(OtherTypes) == sizeof...(Types), "Tuples must have the same size.");
-      times_eq_impl(other, std::make_index_sequence<sizeof...(Types)>{});
-      return *this;
+      return times_eq_impl(other, std::make_index_sequence<sizeof...(Types)>{});
     }
 
 
@@ -94,8 +91,7 @@ namespace tpl {
     template <typename ... OtherTypes>
     auto& operator/=(const Tuple<OtherTypes...>& other) {
       // static_assert(sizeof...(OtherTypes) == sizeof...(Types), "Tuples must have the same size.");
-      divide_eq_impl(other, std::make_index_sequence<sizeof...(Types)>{});
-      return *this;
+      return divide_eq_impl(other, std::make_index_sequence<sizeof...(Types)>{});
     }
 
     template <typename ... OtherTypes>
@@ -160,8 +156,9 @@ namespace tpl {
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
-    void plus_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
+    auto plus_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
       ((this->get<Idx>() += other.template get<Idx>()), ...);
+      return *this;
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
@@ -172,8 +169,9 @@ namespace tpl {
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
-    void minus_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
+    auto minus_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
       ((this->get<Idx>() -= other.template get<Idx>()), ...);
+      return *this;
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
@@ -184,8 +182,9 @@ namespace tpl {
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
-    void times_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
+    auto times_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
       ((this->get<Idx>() *= other.template get<Idx>()), ...);
+      return *this;
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
@@ -196,8 +195,9 @@ namespace tpl {
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
-    void divide_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
+    auto divide_eq_impl(const Tuple<OtherTypes...>& other, std::index_sequence<Idx...>) {
       ((this->get<Idx>() /= other.template get<Idx>()), ...);
+      return *this;
     }
 
     template<std::size_t... Idx, typename ... OtherTypes>
