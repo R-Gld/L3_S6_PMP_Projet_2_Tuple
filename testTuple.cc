@@ -90,13 +90,13 @@ TEST(Get, Affectation) {
 TEST(Get, Const) {
   const auto t1 = tpl::makeTuple(5, 1.0, std::string("abc"));
 
-  const bool is_const_0 = std::is_same_v<decltype(t1.get<0>()), const int&>();
+  constexpr bool is_const_0 = std::is_same_v<decltype(t1.get<0>()), const int&>;
   EXPECT_EQ(is_const_0, true);
 
-  const bool is_const_1 = std::is_same_v<decltype(t1.get<1>()), const double&>();
+  constexpr bool is_const_1 = std::is_same_v<decltype(t1.get<1>()), const double&>;
   EXPECT_EQ(is_const_1, true);
 
-  const bool is_const_2 = std::is_same_v<decltype(t1.get<2>()), const std::string&>();
+  constexpr bool is_const_2 = std::is_same_v<decltype(t1.get<2>()), const std::string&>;
   EXPECT_EQ(is_const_2, true);
 
   EXPECT_EQ(t1.get<0>(), 5);
