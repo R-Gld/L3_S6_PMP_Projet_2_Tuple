@@ -103,7 +103,6 @@ TEST(Get, Const) {
   constexpr bool is_const_0 = std::is_same_v<decltype(t1.get<0>()), const int&>;
   EXPECT_EQ(is_const_0, true);
 
-
   constexpr bool is_const_1 = std::is_same_v<decltype(t1.get<1>()), const double&>;
   EXPECT_EQ(is_const_1, true);
 
