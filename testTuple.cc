@@ -67,8 +67,8 @@ int main(int argc, char* argv[]) {
  * Test given in the documentation of `tpl::Tuple::plus_impl`.
  */
 TEST(decltype, explained) {
-  constexpr int i = 1;
-  constexpr double d = 5.0;
+  [[maybe_unused]] constexpr int i = 1;
+  [[maybe_unused]] constexpr double d = 5.0;
   constexpr bool res = std::is_same_v<decltype(i + d), double>;
   EXPECT_EQ(res, true);
 }
@@ -102,6 +102,7 @@ TEST(Get, Const) {
 
   constexpr bool is_const_0 = std::is_same_v<decltype(t1.get<0>()), const int&>;
   EXPECT_EQ(is_const_0, true);
+
 
   constexpr bool is_const_1 = std::is_same_v<decltype(t1.get<1>()), const double&>;
   EXPECT_EQ(is_const_1, true);
