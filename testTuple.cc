@@ -63,6 +63,16 @@ int main(int argc, char* argv[]) {
 
 /* ------------------ */
 
+/**
+ * Test given in the documentation of `tpl::Tuple::plus_impl`.
+ */
+TEST(decltype, explained) {
+  constexpr int i = 1;
+  constexpr double d = 5.0;
+  constexpr bool res = std::is_same_v<decltype(i + d), double>;
+  EXPECT_EQ(res, true);
+}
+
 TEST(Get, Classic) {
   tpl::Tuple<int, double, std::string> t1(42, 3.14, "Hello World !");
   EXPECT_EQ(t1.get<0>(), 42);
@@ -311,6 +321,18 @@ TEST(Operator, Concat) {
   EXPECT_EQ(t3.get<5>(), '\t');
   EXPECT_EQ(t3.get<6>(), 5);
   EXPECT_EQ(t3.get<7>(), -99999);
+}
+
+TEST(Operator, ConcatWithDifferentSizes) {
+  auto t1 = tpl::makeTuple(std::string("abc"), 0);
+  auto t2 = tpl::makeTuple(std::string("def"), std::string("ghi"), 1);
+
+  auto t3 = std::move(t1) | std::move(t2);
+  EXPECT_EQ(t3.get<0>(), "abc");
+  EXPECT_EQ(t3.get<1>(), 0);
+  EXPECT_EQ(t3.get<2>(), "def");
+  EXPECT_EQ(t3.get<3>(), "ghi");
+  EXPECT_EQ(t3.get<4>(), 1);
 }
 
 TEST(Operator, ConcatWithOneEmpty) {
