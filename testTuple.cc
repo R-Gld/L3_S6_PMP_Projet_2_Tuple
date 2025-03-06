@@ -290,8 +290,8 @@ TEST(Operator, Times) {
 }
 
 TEST(Operator, Divide) {
-  const auto t1 = tpl::makeTuple(10, 10, 0.5, 0.5);
-  const auto t2 = tpl::makeTuple(0.5, 0.5, 10,   10);
+  const auto t1 = tpl::makeTuple(10,  10,  0.5, 0.5);
+  const auto t2 = tpl::makeTuple(0.5, 0.5, 10,  10);
 
   const tpl::Tuple t3 = t1 / t2;
   EXPECT_EQ(t3.get<0>(), 20);
