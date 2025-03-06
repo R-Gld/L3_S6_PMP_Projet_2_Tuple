@@ -205,6 +205,12 @@ namespace tpl {
       return !(*this < other);
     }
 
+    /**
+     * see tpl::Tuple::concat_impl for the implementation.
+     * @tparam OtherTypes The types of the elements contained in the other tuple
+     * @param other The other tuple to concatenate with the current one
+     * @return A new tuple containing the concatenation of the two tuples
+     */
     template <typename ... OtherTypes>
     auto operator|(Tuple<OtherTypes...>&& other) {
       return concat_impl(
@@ -216,6 +222,12 @@ namespace tpl {
 
 
   private:
+    /**
+     * @tparam Idx The index of the element to get
+     * @tparam TupleImpl_SubType The subtype of the tuple to get the element from
+     * @param t The tuple to get the element from
+     * @return The element at the given index
+     */
     template<std::size_t Idx, typename TupleImpl_SubType>
     static auto& get_impl(TupleImpl_SubType& t) {
       if constexpr (Idx == 0) {
