@@ -94,8 +94,8 @@ TEST(Get, Affectation) {
 }
 
 /**
- * Vérifie que lorsque l'on créer un tuple en const. Les valeurs de Tuple#get<Idx>() sont bien des références constante.
- * Et donc qu'elle ne peuvent pas être modifier.
+ * Vérifie que lorsque l'on crée un tuple en const. Les valeurs de Tuple#get<Idx>() sont bien des références constante.
+ * Et donc qu'elles ne peuvent pas être modifiées.
  */
 TEST(Get, Const) {
   const auto t1 = tpl::makeTuple(5, 1.0, std::string("abc"));
