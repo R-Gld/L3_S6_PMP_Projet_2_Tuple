@@ -203,6 +203,15 @@ TEST(ComparatorWithStruct, SuperiorOrEqual) {
   EXPECT_EQ(t1 >= t2, false);
 }
 
+TEST(Comparator, Equality) {
+  const auto t1 = tpl::makeTuple(10, 20.5, std::string("hello"));
+  const auto t2 = tpl::makeTuple(10, 20.5, std::string("hello"));
+  const auto t3 = tpl::makeTuple(10, 20.5, std::string("world"));
+
+  EXPECT_TRUE(t1 == t2);
+  EXPECT_TRUE(t1 != t3);
+}
+
 
 TEST(Operator, Plus) {
   const auto t1 = tpl::makeTuple(1,   1,   0.1, 0.1);
@@ -236,6 +245,13 @@ TEST(Operator, PlusEqString) {
   const auto t2 = tpl::makeTuple(static_cast<std::string>("def"));
   t1 += t2;
   EXPECT_EQ(t1.get<0>(), "abcdef");
+}
+
+TEST(Operator, SelfAssignment) {
+  auto t = tpl::makeTuple(5, 10);
+  t += t;
+  EXPECT_EQ(t.get<0>(), 10);
+  EXPECT_EQ(t.get<1>(), 20);
 }
 
 TEST(OperatorWithStruct, Plus) {
@@ -305,6 +321,17 @@ TEST(Operator, Divide) {
   EXPECT_EQ(t4.get<1>(), 20);
   EXPECT_EQ(t4.get<2>(), 0.05);
   EXPECT_EQ(t4.get<3>(), 0.05);
+}
+
+TEST(Operator, ChainingArithmetic) {
+  const auto t1 = tpl::makeTuple(1, 2);
+  const auto t2 = tpl::makeTuple(3, 4);
+  const auto t3 = tpl::makeTuple(5, 6);
+  const auto t4 = tpl::makeTuple(7, 8);
+
+  auto result = t1 + t2 - t3 * t4;
+  EXPECT_EQ(result.get<0>(), t1.get<0>() + t2.get<0>() - t3.get<0>() * t4.get<0>());
+  EXPECT_EQ(result.get<1>(), t1.get<1>() + t2.get<1>() - t3.get<1>() * t4.get<1>());
 }
 
 TEST(Operator, Concat) {
