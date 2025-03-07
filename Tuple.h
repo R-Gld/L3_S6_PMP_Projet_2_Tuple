@@ -409,16 +409,14 @@ namespace tpl {
      */
     template<std::size_t I = 0, typename... OtherTypes>
     constexpr bool lexic_compare(const Tuple<OtherTypes...>& other) const {
-      constexpr std::size_t left_size = sizeof...(Types);
-      constexpr std::size_t right_size = sizeof...(OtherTypes);
-      if constexpr (I < left_size && I < right_size) {
+      if constexpr (I < sizeof...(Types)) {
         if (this->get<I>() < other.template get<I>())
           return true;
         if (other.template get<I>() < this->get<I>())
           return false;
         return lexic_compare<I+1>(other);
       } else {
-        return left_size < right_size;
+        return false;
       }
     }
   };
