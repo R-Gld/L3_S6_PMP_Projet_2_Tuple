@@ -2,4 +2,4 @@
 # Tuple
 ## Projet réalisé en monome par Romain GALLAND
 
-(Projet rendu public le 07/03/2025 à 14h.)
+> This repository will be made public on 07/03/2025, at 23:59 UTC+1.
