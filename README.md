@@ -1,4 +1,4 @@
-[![CMake](https://github.com/R-Gld/L3_S6_PMP_Projet_2_Tuple/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/R-Gld/L3_S6_PMP_Projet_2_Tuple/actions/workflows/cmake-single-platform.yml)
+[![CMake Build](https://github.com/R-Gld/L3_S6_PMP_Projet_2_Tuple/actions/workflows/cmake-build.yml/badge.svg)](https://github.com/R-Gld/L3_S6_PMP_Projet_2_Tuple/actions/workflows/cmake-build.yml)
 # Tuple
 ## Projet réalisé en monome par Romain GALLAND
 
