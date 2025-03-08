@@ -21,4 +21,4 @@ cd build
 ```
 
 ## Public release
-> This repository will be made public on 07/03/2025, at 23:59 UTC+1.
+> This repository was made public on 07/03/2025, at 23:59 UTC+1.
